@@ -31,7 +31,12 @@ namespace PenClothes.Pages
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            var fileForEdit = SupplierGrid.SelectedItems.Cast<Supplier>().ToList();
+            if (SupplierGrid.SelectedItem != null) {
+                Supplier selectedSupplier = (Supplier)SupplierGrid.SelectedItem;
+
+                EditSupplierPage editPage = new EditSupplierPage(selectedSupplier);
+                NavigationService.Navigate(editPage);
+            }
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)

@@ -9,6 +9,34 @@
       Title="EditSupplierPage">
 
     <Grid>
-        
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock  Width="290">Название:</TextBlock>
+                <TextBox Name="TxbName" ></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock  Width="290">ИНН:</TextBlock>
+                <TextBox Name="TxbINN"  Width="250"></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock  Width="290">Дата:</TextBlock>
+                <DatePicker Name="DatePicker" Width="260"></DatePicker>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock  Width="290">Рейтинг качества:</TextBlock>
+                <TextBox Name="TxbQuality" ></TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Width="290">Тип поставщика:</TextBlock>
+                <TextBox Name="TxbType"></TextBox>
+            </StackPanel>
+
+            <Button Name="BtnEdit" Click="BtnEdit_Click" >Сохранить изменения</Button>
+            <Button Name="GoBackIWantToBeMonkey" Click="GoBackIWantToBeMonkey_Click" >Назад</Button>
+        </StackPanel>
     </Grid>
 </Page>
