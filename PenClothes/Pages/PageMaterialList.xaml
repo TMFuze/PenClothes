@@ -1,0 +1,94 @@
+﻿<Page x:Class="PenClothes.Pages.PageMaterialList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PenClothes.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Лист материалов" Loaded="Page_Loaded">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.25*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="50/273"
+                   Name="ResultTxb"
+                   FontSize="16"
+                   Grid.Row="0"
+                   VerticalAlignment="Center"
+                   Margin="10,0,0,0"/>
+
+        <StackPanel Orientation="Horizontal"
+                    Height="30"
+                    HorizontalAlignment="Center">
+            <TextBox Width="300"
+                     FontSize="16"
+                     TextChanged="TextBox_TextChanged"
+                     Name="TxbSearch"/>
+            <ComboBox Name="CmbSort"
+                      SelectionChanged="CmbSort_SelectionChanged"
+                      Margin="5,0"
+                      Width="150">
+                <ComboBoxItem Content="Все типы"/>
+                <ComboBoxItem Content="Наименование | По возрастанию"/>
+                <ComboBoxItem Content="Наименование | По убыванию"/>
+                <ComboBoxItem Content="Остаток на складе | По возрастанию"/>
+                <ComboBoxItem Content="Остаток на складе | По убыванию"/>
+                <ComboBoxItem Content="Стоимость | По возрастанию"/>
+                <ComboBoxItem Content="Стоимость | По убыванию"/>
+            </ComboBox>
+
+            <ComboBox Name="CmbFilter"
+                      Width="150"
+                      Margin="5,0"
+                      SelectionChanged="CmbFilter_SelectionChanged"
+                      />
+        </StackPanel>
+
+        <ListView
+            x:Name="MaterialList"
+            SelectionChanged="MaterialList_SelectionChanged"
+            Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding Image}"
+                           Width="150"
+                           Height="150"/>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding MaterialType.Title}"/>
+                                <Label Content=" | "/>
+                                <Label Content="{Binding Title}"/>
+                            </StackPanel>
+                            <Label Content="{Binding MinCount}" ContentStringFormat="Минимальное количество на складе: {0}"/>
+                            <Label Content="{Binding Supplier.Title}" ContentStringFormat="Поставщики: {0}"/>
+                         </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal">
+            <Button Name="BtnChange" 
+                    Click="BtnChange_Click" 
+                    Content="Изменить минимальное количество на..." 
+                    Visibility="Hidden" 
+                    Margin="10" 
+                    Width="380"/>
+            <Button Margin="10"
+                    Name="GoBackIWantToBeMonkey"
+                    Content="Назад"
+                    Click="GoBackIWantToBeMonkey_Click">
+                    
+            </Button>
+            
+        </StackPanel>
+
+    </Grid>
+</Page>

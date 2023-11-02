@@ -1,0 +1,40 @@
+﻿<Page x:Class="PenClothes.Pages.UserMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PenClothes.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Пользовательское меню">
+
+    <Grid>
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Button Name="ChekListMaterials"
+                    Click="ChekListMaterials_Click"
+                    Content="Список материалов"
+                    Width="250"
+                    />
+            <Button Name="SupplierList"
+                    Click="SupplierList_Click"
+                    Content="Список поставщиков"
+                    Width="250"/>
+            <Button Name="MatialsControl"
+                    Click="ChekListMaterials_Click"
+                    Content="Управление списком материалов"
+                    Width="250"/>
+            </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right">
+            <Button Name="BtnBack"
+                    Click="BtnBack_Click"
+                    Style="{StaticResource RightButton}">
+                <Image Source="/Resources/left-arrow.png"
+                       ToolTip="Назад"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

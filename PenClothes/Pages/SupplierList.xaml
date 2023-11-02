@@ -1,0 +1,53 @@
+﻿<Page x:Class="PenClothes.Pages.SupplierList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PenClothes.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1000"
+      Title="Лист поставщиков">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="0.7*"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="0"
+                  Name="SupplierGrid"
+                  Width="auto"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№"
+                                    Width="Auto"
+                                    Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Название"
+                                    Width="Auto"
+                                    Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="ИНН"
+                                    Width="Auto"
+                                    Binding="{Binding INN}"/>
+                <DataGridTextColumn Header="Дата начала"
+                                    Width="Auto"
+                                    Binding="{Binding StartDate}"/>
+                <DataGridTextColumn Header="Рейтинг качества"
+                                    Width="Auto"
+                                    Binding="{Binding QualityRating}"/>
+                <DataGridTextColumn Header="Тип поставщика"
+                                    Width="*"
+                                    Binding="{Binding SupplierType}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Name="TxbTitle" Visibility="Hidden" Text="{Binding SelectedItem.Title, ElementName=SupplierGrid}"></TextBlock>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Name="BtnBack" Click="BtnBack_Click" Width="200" >Назад</Button>
+            <Button Name="BtnDelete" Click="BtnDelete_Click" Width="200" >Удалить</Button>
+            <Button Name="BtnEdit" Click="BtnEdit_Click" Width="200" >Редактировать</Button>
+            <Button Name="BtnAdd" Click="BtnAdd_Click" Width="200">Добавить</Button>
+        </StackPanel>
+
+    </Grid>
+</Page>
