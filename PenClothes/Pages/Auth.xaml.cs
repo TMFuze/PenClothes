@@ -1,4 +1,5 @@
 ﻿using PenClothes.AppFiles;
+using PenClothes.DBEnt;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace PenClothes.Pages
     /// </summary>
     public partial class Auth : Page
     {
+        
         public Auth()
         {
             InitializeComponent();
@@ -48,16 +50,23 @@ namespace PenClothes.Pages
                 else
                 {
                     var userObj = DBConnect.entities.User.FirstOrDefault(x => x.Login == TxbLog.Text && x.Password == PsbPass.Password);
+                    
                     if (userObj == null)
                     {
                         MessageBox.Show("Такой пользователь не найден",
                                     "Уведомление",
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Information);
-                        FrameApp.frmObj.Navigate(new Pages.Registration());
+                        
                     }
                     else
                     {
+
+                        
+
+
+
+                       
                         switch (userObj.IdRole)
                         {
                             case 1:
@@ -65,17 +74,27 @@ namespace PenClothes.Pages
                                     "Уведомление",
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Information);
-                                FrameApp.frmObj.Navigate(new UserMenu());
+
+                                // Создайте объект UserMenu и перейдите на эту страницу
+                                UserMenu userMenu = new UserMenu();
+                                FrameApp.frmObj.Navigate(userMenu);
 
                                 break;
+
                             case 2:
                                 MessageBox.Show("Здравствуйте оператор " + userObj.Name + "!",
                                     "Уведомление",
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Information);
-                                /*FrameApp.frmObj.Navigate(new   сюда пейдж());*/
+
+                                // Создайте объект WellcomePage и передайте имя пользователя в конструктор
+                                WellcomePage welcomePage = new WellcomePage(userObj.Name);
+
+                                // Перейдите на страницу WellcomePage
+                                FrameApp.frmObj.Navigate(welcomePage);
 
                                 break;
+
                             case 3:
                                 MessageBox.Show("Здравствуйте агент " + userObj.Name + "!",
                                     "Уведомление",
@@ -95,8 +114,12 @@ namespace PenClothes.Pages
                                     "Уведомление",
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Information);
+
                                 /*FrameApp.frmObj.Navigate(new Pages.ArchiveData());*/
                                 break;
+
+
+                                
                         }
                     }
                 }
