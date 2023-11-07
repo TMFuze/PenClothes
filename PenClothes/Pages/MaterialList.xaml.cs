@@ -137,7 +137,30 @@ namespace PenClothes.Pages
 
         private void BtnChange_Click(object sender, RoutedEventArgs e)
         {
+            var filesForRemoving = EditMaterialList.SelectedItems.Cast<Material>().ToList();
+            try
+            {
+                var result = MessageBox.Show("Вы уверены?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    // Удаление выбранных файлов из базы данных
+                    DBConnect.entities.Material.RemoveRange(filesForRemoving);
+                    DBConnect.entities.SaveChanges();
+                    MessageBox.Show("Данные удалены.");
 
+                    EditMaterialList.ItemsSource = DBConnect.entities.Material.ToList();
+
+
+                }
+                else
+                {
+                    EditMaterialList.ItemsSource = DBConnect.entities.Material.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }

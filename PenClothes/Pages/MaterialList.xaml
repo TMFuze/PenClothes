@@ -68,7 +68,7 @@
                     Orientation="Horizontal">
             <Button Name="BtnChange" 
                     Click="BtnChange_Click" 
-                    Content="Изменить минимальное количество на..." 
+                    Content="Удалить" 
                     Visibility="Hidden" 
                     Margin="10" 
                     Width="380"/>
