@@ -17,18 +17,13 @@ using System.Windows.Shapes;
 namespace PenClothes.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для UserMenu.xaml
+    /// Логика взаимодействия для MaterialControl.xaml
     /// </summary>
-    public partial class UserMenu : Page
+    public partial class MaterialControl : Page
     {
-        public UserMenu()
+        public MaterialControl()
         {
             InitializeComponent();
-        }
-
-        private void ChekListMaterials_Click(object sender, RoutedEventArgs e)
-        {
-            FrameApp.frmObj.Navigate(new PageMaterialList());
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -36,14 +31,14 @@ namespace PenClothes.Pages
             FrameApp.frmObj.GoBack();
         }
 
-        private void SupplierList_Click(object sender, RoutedEventArgs e)
+        private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            FrameApp.frmObj.Navigate(new SupplierList());
+            FrameApp.frmObj.Navigate(new MaterialList());
         }
 
-        private void MatialsControl_Click(object sender, RoutedEventArgs e)
+        private void AddMaterial_Click(object sender, RoutedEventArgs e)
         {
-            FrameApp.frmObj.Navigate(new MaterialControl());
+            FrameApp.frmObj.Navigate(new AddMaterial());
         }
     }
 }

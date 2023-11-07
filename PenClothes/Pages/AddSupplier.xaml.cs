@@ -61,6 +61,7 @@ namespace PenClothes.Pages
                                     "Уведомление",
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Information);
+                    FrameApp.frmObj.Navigate(new SupplierList());
                 }
                 catch (Exception ex)
                 {

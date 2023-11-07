@@ -47,7 +47,7 @@ namespace PenClothes.Pages
 
         private void GoBackIWantToBeMonkey_Click(object sender, RoutedEventArgs e)
         {
-
+            FrameApp.frmObj.GoBack();
         }
     }
 }
