@@ -22,6 +22,9 @@ namespace PenClothes.Pages
     /// </summary>
     public partial class SupplierList : Page
     {
+
+        private Supplier selectedSupplier;
+
         public SupplierList()
         {
             InitializeComponent();
@@ -31,11 +34,11 @@ namespace PenClothes.Pages
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (SupplierGrid.SelectedItem != null) {
-                Supplier selectedSupplier = (Supplier)SupplierGrid.SelectedItem;
 
+            if (selectedSupplier != null)
+            {
                 EditSupplierPage editPage = new EditSupplierPage(selectedSupplier);
-                NavigationService.Navigate(editPage);
+                FrameApp.frmObj.Navigate(editPage);
             }
         }
 
@@ -74,7 +77,12 @@ namespace PenClothes.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
+            FrameApp.frmObj.Navigate(new AddSupplier());
+        }
 
+        private void SupplierGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedSupplier = (Supplier)SupplierGrid.SelectedItem;
         }
     }
 }

@@ -22,52 +22,36 @@ namespace PenClothes.Pages
     /// </summary>
     public partial class EditSupplierPage : Page
     {
-        private Supplier selectedSupplier;
+        private Supplier supplier;
         public EditSupplierPage(Supplier selectedSupplier)
         {
             InitializeComponent();
 
-            TxbName.Text = selectedSupplier.Title;
-            TxbINN.Text = selectedSupplier.INN;
-            DatePicker.SelectedDate = selectedSupplier.StartDate;
-            TxbQuality.Text = selectedSupplier.QualityRating.ToString();
-            TxbType.Text = selectedSupplier.SupplierType;
+            this.supplier = selectedSupplier;
+            // Заполните элементы формы значениями из supplier
+            if (supplier != null)
+            {
+                TxbName.Text = supplier.Title;
+                TxbINN.Text = supplier.INN;
+                DatePicker.SelectedDate = supplier.StartDate;
+                TxbQuality.Text = supplier.QualityRating.ToString();
+                TxbType.Text = supplier.SupplierType;
+            }
+
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-            // Получите данные из элементов управления
-            string newName = TxbName.Text;
-            string newINN = TxbINN.Text;
-            DateTime newStartDate = DatePicker.SelectedDate ?? DateTime.MinValue; // Обработка null значения
-            int newQualityRating = int.Parse(TxbQuality.Text);
-            string newSupplierType = TxbType.Text;
-            if (selectedSupplier == null)
+            if (supplier != null)
             {
-                selectedSupplier = new Supplier();
-            }
-            else
-            {
-                // Обновите выбранного поставщика
-                selectedSupplier.Title = newName;
-                selectedSupplier.INN = newINN;
-                selectedSupplier.StartDate = newStartDate;
-                selectedSupplier.QualityRating = newQualityRating;
-                selectedSupplier.SupplierType = newSupplierType;
-                
-                DBConnect.entities.SaveChanges();
-            }
-            try
-            {
-                // Сохраните изменения в базе данных
-               
+                supplier.Title = TxbName.Text;
+                supplier.INN = TxbINN.Text;
+                supplier.StartDate = DatePicker.DisplayDate;
+                supplier.QualityRating = int.Parse(TxbQuality.Text);
+                supplier.SupplierType = TxbType.Text;
 
-                MessageBox.Show("Изменения сохранены", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                DBConnect.entities.SaveChanges();
                 FrameApp.frmObj.Navigate(new SupplierList());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка при сохранении изменений: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

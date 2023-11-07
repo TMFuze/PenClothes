@@ -33,6 +33,15 @@ namespace PenClothes.Pages
             FrameApp.frmObj.GoBack();
         }
 
+        void ShowWelcomeMessageAndNavigate(string roleName, string userName)
+        {
+            string message = "Здравствуйте " + roleName + " " + userName + "!";
+            MessageBox.Show(message, "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            WellcomePage welcomePage = new WellcomePage(userName);
+            FrameApp.frmObj.Navigate(welcomePage);
+        }
+
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -62,64 +71,42 @@ namespace PenClothes.Pages
                     else
                     {
 
-                        
 
 
 
-                       
+
+
                         switch (userObj.IdRole)
                         {
                             case 1:
                                 MessageBox.Show("Здравствуйте кладовщик " + userObj.Name + "!",
-                                    "Уведомление",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Information);
+                                   "Уведомление",
+                                   MessageBoxButton.OK,
+                                   MessageBoxImage.Information);
 
                                 // Создайте объект UserMenu и перейдите на эту страницу
                                 UserMenu userMenu = new UserMenu();
                                 FrameApp.frmObj.Navigate(userMenu);
-
                                 break;
-
                             case 2:
-                                MessageBox.Show("Здравствуйте оператор " + userObj.Name + "!",
-                                    "Уведомление",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Information);
-
-                                // Создайте объект WellcomePage и передайте имя пользователя в конструктор
-                                WellcomePage welcomePage = new WellcomePage(userObj.Name);
-
-                                // Перейдите на страницу WellcomePage
-                                FrameApp.frmObj.Navigate(welcomePage);
-
+                                ShowWelcomeMessageAndNavigate("Оператор", userObj.Name);
                                 break;
-
                             case 3:
-                                MessageBox.Show("Здравствуйте агент " + userObj.Name + "!",
-                                    "Уведомление",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Information);
-                                /*FrameApp.frmObj.Navigate(new Pages.ArchiveData());*/
+                                ShowWelcomeMessageAndNavigate("Агент", userObj.Name);
                                 break;
                             case 4:
-                                MessageBox.Show("Здравствуйте менеджер " + userObj.Name + "!",
-                                    "Уведомление",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Information);
-                                /*FrameApp.frmObj.Navigate(new Pages.ArchiveData());*/
+                                ShowWelcomeMessageAndNavigate("Менеджер", userObj.Name);
                                 break;
                             case 5:
-                                MessageBox.Show("Здравствуйте кадровик " + userObj.Name + "!",
-                                    "Уведомление",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Information);
-
-                                /*FrameApp.frmObj.Navigate(new Pages.ArchiveData());*/
-                                break;
-
+                                MessageBox.Show("Здравствуйте крадовик " + userObj.Name + "!",
+                                   "Уведомление",
+                                   MessageBoxButton.OK,
+                                   MessageBoxImage.Information);
 
                                 
+                                
+                                FrameApp.frmObj.Navigate(new AdminPage());
+                                break;
                         }
                     }
                 }
